@@ -1,9 +1,4 @@
 let gCanvasSize = [1600, 1200]; //キャンバスサイズ
-//テスト
-let gBellList = [];
-let gAmplList = [];
-let gPeakList = [];
-let amplitude;
 
 let gPlayerList = [];//プレイヤーのリスト
 let gGakkiList = []//楽器のリスト
@@ -29,14 +24,6 @@ const SEIJA_SET = [
   {"sound":"assets/seija_4.mp3", "gakki":Gakki_Kind.Triangle, "color":[[200,200,000]]}
 ]
 
-//楽器に相当する色を定義する。
-/*
-const Color_Gakki_Map =
-{ Gakki_Kind.Piano:[200,0,0],
-  Gakki_Kind.Metallophone:[0,200,0],
-  Gakki_Kind.Xylophone:[0,0,200]
-}*/
-
 //曲のセットを行進する
 function updateSoundSet(sound_set){
   gGakkiList = [];
@@ -48,6 +35,7 @@ function updateSoundSet(sound_set){
       gakki.addColor(color);
     }
     gakki.setSoundName(elem["sound"]);
+    gGakkiList.push(gakki);
   }
 }
 
@@ -56,11 +44,6 @@ function preload() {
   // Ensure the .ttf or .otf font stored in the assets directory
   // is loaded before setup() and draw() are called
   frameRate(30);
-  /*gBellList.push(loadSound('assets/bell_1.mp3'));
-  gBellList.push(loadSound('assets/bell_2.mp3'));
-  gBellList.push(loadSound('assets/bell_3.mp3'));
-  gBellList.push(loadSound('assets/bell_4.mp3'));
-  */  
 }
 
 //画面関連の初期化
@@ -70,17 +53,10 @@ function setup() {
   //最初は聖者の行進を読んでおく
   updateSoundSet(SEIJA_SET);
 
-  /*
-  for(elem of gBellList){
-    tamplitude = new p5.Amplitude();
-    tamplitude.setInput(elem);
-    gAmplList.push(tamplitude); 
+  //楽曲を読み込む
+  for(elem of gGakkiList){
+    elem.loadSound();
   }
-  for(elem of gBellList){
-    gPeakList.push(elem.getPeaks(1));
-    console.log("peak ",elem.getPeaks(1)[0]);
-  }
-  */
 }
 
 //描画処理
@@ -89,45 +65,85 @@ function draw() {
   background(0);
   fill(255);
   textSize(20);
-  /*
-  for(let index in gAmplList){
-    text("amp of sound["+index+"]="+gAmplList[index].getLevel(), 10, 20+20*index);
-  }*/
-  
-  //image(gBackImg, 0, 0);
 
-  //音と連動して,bluetoothにコマンドを送信する。
-  //while(gMessageQueue.length!=0){
-  /*if(gAmplList[0].getLevel()>0.1){
-    //console.log("gMessageQueue.len=",gMessageQueue.length)
-    //let data = gMessageQueue.shift()
-    onSendMsg();
-  }*/
-//}
-
-  /*switch (key) {
-    case "x":
-      break;
-  }*/
+  //現在のプレーヤーの状態で音を変える。
+  cntrlSoundByPlayer();
 }
 
 function keyPressed() {
-  console.log("key");
-   
-  if (key === "a") {
-    console.log("key a");
-    /*for(elem of gBellList){
-      if(!elem.isPlaying()){
-      elem.play(); // 音を再生！
+  console.log("key=",key, keyCode); 
+  if (key == "Enter") {
+    console.log("play current gakki_set");
+    //全てロードしているか確認する
+    var loadFg = true;
+    for(elem of gGakkiList){
+      if(!elem.sound.isLoaded()){
+        loadFg = false;
       }
-    }*/
-  }else if (key === "b") {
-    console.log("key b");
-    /*for(elem of gBellList){
-      if(elem.isPlaying()){
-      elem.stop(); // 音を再生！
+    }
+    if(!loadFg){
+      console.log("not loaded.")
+      return;
+    }
+
+    for(elem of gGakkiList){
+      if(!elem.sound.isPlaying()){
+        elem.sound.play();
+        elem.sound.setVolume(1);
+        console.log("elem play",elem)
       }
-    }*/
+    }
+  }else if (key == "s") {
+    console.log("stop sound");
+    for(elem of gGakkiList){
+      if(elem.sound.isPlaying()){
+        elem.sound.stop();
+      }
+    }
+  }else if (key == "m") {
+    console.log("mute");
+    for(elem of gGakkiList){
+      if(elem.sound.isPlaying()){
+        elem.sound.setVolume(0);
+      }
+    }
+  }else if (key == "u") {
+    console.log("unmute");
+    for(elem of gGakkiList){
+      if(elem.sound.isPlaying()){
+        elem.sound.setVolume(1);
+      }
+    }
+  }else if (key == "1" || key == "2" || key == "3" || key == "4") {
+    //プレイヤー1がいない場合には、追加する。いた場合には、削除する。
+    var findFg=false;
+    for(i in gPlayerList){
+      if(gPlayerList[i].devname=="player"+key){
+        findFg = true;
+        //リストから削除
+        gPlayerList.splice(i, 1);
+        console.log("remove "+key+" gakki user");
+        break;
+      }
+    }
+    //追加する。
+    if(!findFg){
+      console.log("add "+key+" gakki user");
+      let player = new Player();
+      player.setDevame("player"+key);
+      if(key == "1"){
+        player.setColor([200,0,0]);
+      }else if(key == "2"){
+        player.setColor([0,200,0]);
+      }else if(key == "3"){
+        player.setColor([0,0,200]);
+      }else if(key == "4"){
+        player.setColor([200,200,0]);
+      }
+      //プレイヤーの楽器を行進する。
+      updateGakkiofPlayer(player);
+      gPlayerList.push(player);
+    }
   }
 }
 
@@ -135,9 +151,10 @@ function keyPressed() {
 function updateGakkiofPlayer(player){
   //楽器リストの中で、プレイヤーの色に一番近い楽器を取得する。
   //一応、該当する色がなかったら、追加しない。
-  hued = 999; //色相の差分
+  var hued = 999; //色相の差分
   var hurc =getHue(player.color); 
-  var gakki = none;
+  var gakki = null;
+  var hue = 0;
   for(elem of gGakkiList){
     for(color of elem.colors){
       hue = getHue(color)
@@ -152,7 +169,7 @@ function updateGakkiofPlayer(player){
   if(hued > 100){
     return;
   }
-  playser.updateGakki(gakki.kind);
+  player.updateGakki(gakki.kind);
 }
 
  //楽器のリストの中で、一番ちかい色の楽器を選ぶ。
@@ -183,7 +200,7 @@ function getHue(color = []){
   var r = color[0];
   var g = color[1];
   var b = color[2];
-  var heu;
+  var hue = 0;
 
   var max = Math.max(r, g, b);
   var min = Math.min(r, g, b);
@@ -213,6 +230,35 @@ function getHue(color = []){
   }
   hue = Math.round(hue);
   return hue;
+}
+
+//現在のプレーヤーの状態で音を変える。
+function cntrlSoundByPlayer(){
+  //現在のプレーヤーが担当している音のみを再生する。
+  curGakkiList = []
+  for(player of gPlayerList ){
+    for(gakki of player.gakkis){
+      if(!curGakkiList.includes(gakki)){
+        curGakkiList.push(gakki);
+      }
+    }
+  }
+  console.log("curGakki=",curGakkiList);
+
+  //演奏対象の楽器リストを更新する。
+  for(gakki of gGakkiList){
+    if(curGakkiList.includes(gakki.kind)){
+      gakki.setEnable(true);
+      if(gakki.sound.isPlaying()){
+        gakki.sound.setVolume(1);
+      }     
+    }else{
+      gakki.setEnable(false);
+      if(gakki.sound.isPlaying()){
+        gakki.sound.setVolume(0);
+      }   
+    }
+  }
 }
 
 

@@ -78,6 +78,7 @@ async function handleNotifications(event) {
           player.updateColor([recieveData[1],recieveData[2],recieveData[3]]);
           //プレイヤーの楽器を行進する。
           updateGakkiofPlayer(player);
+          gPlayerList.push(player);
 
           //PartListにデバイス名称を追加する。
           let existFg = false;

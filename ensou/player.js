@@ -25,17 +25,17 @@ class Player {
 
     //楽器を追加する
     addGakki(gakki){
-        this.gakki.push(gakki);
+        this.gakkis.push(gakki);
     }
 
     //楽器を行進する
     updateGakki(gakki){
-        this.gakki = [gakki]
+        this.gakkis = [gakki]
     }
 
     //楽器を削除する
     deleteGakki(gakki){
-        this.gakki = []
+        this.gakkis = []
     }
 
-};
+}

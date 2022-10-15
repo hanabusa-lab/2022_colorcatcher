@@ -8,6 +8,7 @@ class Gakki {
         this.colors = []; //音に対応する色 [0,0,200],[200,0,10]のようにカラーを複数もつ
         this.sound_name = null; //該当の音の名前
         this.sound = null;//該当の音。これは一つ
+        this.enableFg = false; //有効か否か。
     }
     
     //種別を追加する
@@ -40,8 +41,27 @@ class Gakki {
         this.sound = loadSound(this.sound_name);
     }
 
+    setEnable(fg){
+        this.enableFg = fg;
+    }
+
+    isEnable(){
+        return this.enableFg ;
+    }
+/*
     //曲のロード状態を確認する。
     isLoaded(){
         return this.sound.isLoaded();
     }
+
+    //再生しながら曲の音量を低くする
+    muteWithPlaying(){
+        return this.sound.setVolume(0);
+    }
+
+    //再生しながら曲の音量を普通にする
+    normalWithPlaying(){
+        return this.sound.setVolume(1);
+    }*/
+
 }
