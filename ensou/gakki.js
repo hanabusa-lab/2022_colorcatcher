@@ -9,6 +9,12 @@ class Gakki {
         this.sound_name = null; //該当の音の名前
         this.sound = null;//該当の音。これは一つ
         this.enableFg = false; //有効か否か。
+        this.pos = [20, 20]; // // 楽器の画面表示位置
+        this.dispSize = [200, 200]; // 楽器のマウス選択用表示範囲
+        this.colorMatched = false; // カラーがマッチしてるか 
+        this.img = [];
+        this.imgOnpu = [];
+        this.imgDirectory = [];
     }
     
     //種別を追加する
@@ -48,6 +54,35 @@ class Gakki {
     isEnable(){
         return this.enableFg ;
     }
+
+    setPos(position){
+        this.pos = position;
+    }
+
+    setColorMatched(result){
+        this.colorMatched = result;
+        /*
+        for(let myResult of result){
+            this.colorMatched.push(myResult);
+        }
+        */
+    }
+
+    setImgDir(dir){
+        for (let myDir of dir){
+            this.imgDirectory.push(myDir);
+        }
+    }
+
+    setImg(){
+        for (let imgDir of this.imgDirectory){
+            // console.log(this.imgDirectory);
+            console.log(imgDir);
+            let myimg = loadImage((imgDir));
+            this.img.push(myimg);
+        }
+    }
+
 /*
     //曲のロード状態を確認する。
     isLoaded(){
