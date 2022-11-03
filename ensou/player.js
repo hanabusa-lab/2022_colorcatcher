@@ -1,8 +1,11 @@
 class Player {
     constructor() {
         this.devname = ""; //bluetoothデバイス名称
-        this.color = [0,0,0]; //r,g,b
+        this.color = [200,0,0]; //r,g,b
         this.gakkis = []; //演奏対象の楽器リスト 楽器の種類を管理する。
+        this.pos = [200, 200];
+        this.dispSize = [150, 150]; // 表示範囲
+        this.img = [];
     }
 
     setDevame(devname){
@@ -36,6 +39,10 @@ class Player {
     //楽器を削除する
     deleteGakki(gakki){
         this.gakkis = []
+    }
+
+    setPos(pos){
+        this.pos = pos;
     }
 
 }
