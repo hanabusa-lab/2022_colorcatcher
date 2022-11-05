@@ -39,6 +39,7 @@ async function onStartButtonClick() {
   }
 }
 
+//bluetooth通知を受け取った場合
 async function handleNotifications(event) {
   try {
     if (gTXCharaList.length==0) {
@@ -68,15 +69,15 @@ async function handleNotifications(event) {
           let findFg = false;
           for(p of gPlayerList){
             if(p.devname==devname){
-              p.updateColor([recieveData[1],recieveData[2],recieveData[3]]);
+              p.color = [recieveData[1],recieveData[2],recieveData[3]];
               break;
             }
           }
           //プレーヤーがいない場合には、追加する。
           let player = new Player();
           player.setDevame(devname);
-          player.updateColor([recieveData[1],recieveData[2],recieveData[3]]);
-          //プレイヤーの楽器を行進する。
+          player.color =[recieveData[1],recieveData[2],recieveData[3]];
+          //プレイヤーの楽器を更新する。
           updateGakkiofPlayer(player);
           gPlayerList.push(player);
 
@@ -98,11 +99,13 @@ async function handleNotifications(event) {
     console.log("Argh! " + error);
   }
 }
-
+/*
+初期のデバック用で現在は不要
 async function onSendMsg() {
   onSendNotes(1,"c5", "16n", 1)
-}
+}*/
 
+/*
 async function onSendNotes(part, nname, duration, velo) {
   try {
     console.log("len=", gRXCharaList.length);
@@ -140,4 +143,49 @@ async function onSendNotes(part, nname, duration, velo) {
   } catch (error) {
     console.log("Argh! " + error);
   }
-}
+}*/
+
+  /* micro:bitに対してvolumeを送信する 
+    part:音楽のパート
+    vol:音量(0から255の値)
+  */
+  async function onSendVolume(gakki, vol) {
+    try {
+      console.log("len=", gRXCharaList.length);
+      if (gRXCharaList.length == 0) {
+        return;
+      }
+   
+      //gakkiを利用しているplayserを特定して対応するデバイス名称を取得する。
+      //複数のデバイスに対応すること。
+      var chara = null;
+      dname = "";
+      console.log("playerlist=",gPlayerList);
+      for(const player of gPlayerList){
+        for(const elem of player.gakkis){
+          console.log("input gakki=",gakki, " elem=",player.devname," gakki=", elem);
+          //該当の楽器の場合
+          if(elem==gakki){
+            dname = player.devname;
+            if(dname==""){
+              console.log("Error. no part found.");
+              break;
+            }
+
+            //該当デバイスに対してvolを送付する。
+            for (const element of gRXCharaList) {
+              //該当のデバイスのみ送付する。
+              if(element["service"]["device"]["name"]!=dname){
+                continue;
+              }
+              let data = "v:"+vol.toString(10)+'\n'
+              console.log("write volume", data);  
+              await element.writeValue(new TextEncoder().encode(data))
+            }
+          }
+        }
+      } 
+    } catch (error) {
+      console.log("Argh! " + error);
+    }
+  }

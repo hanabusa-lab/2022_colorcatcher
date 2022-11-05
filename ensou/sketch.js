@@ -3,6 +3,8 @@ let gCanvasSize = [1600, 1200]; //キャンバスサイズ
 let gPlayerList = [];//プレイヤーのリスト
 let gGakkiList = []//楽器のリスト
 
+let gPreCurGakkiList = [] //以前の楽器リスト(デバック用)
+
 //楽器種別
 const Gakki_Kind = { None:0, Piano:1, Metallophone:2, Xylophone:3, Triangle:4,
   Tambourine:5, Drum:6 };
@@ -144,10 +146,19 @@ function keyPressed() {
       updateGakkiofPlayer(player);
       gPlayerList.push(player);
     }
+  //vの場合には、繋がっているplayerにvolumeを送付する。
+  //テストとして、player登録されている全てのmicro:bitに送付する。
+  }else if (key == "v") {
+    console.log("send vol");
+    for(player of gPlayerList){
+      for(elem of player.gakkis){
+        onSendVolume(elem, 255) 
+      }
+    }
   }
 }
 
-//プレイヤーの現在の色を使って、playerが利用する楽器を行進する。
+//プレイヤーの現在の色を使って、playerが利用する楽器を更新する。
 function updateGakkiofPlayer(player){
   //楽器リストの中で、プレイヤーの色に一番近い楽器を取得する。
   //一応、該当する色がなかったら、追加しない。
@@ -243,8 +254,11 @@ function cntrlSoundByPlayer(){
       }
     }
   }
-  console.log("curGakki=",curGakkiList);
-
+  //楽器の状態が変わった場合に表示する
+  if(curGakkiList.length != gPreCurGakkiList.length){
+    console.log("curGakki=",curGakkiList);
+  }
+  gPreCurGakkiList = curGakkiList;
   //演奏対象の楽器リストを更新する。
   for(gakki of gGakkiList){
     if(curGakkiList.includes(gakki.kind)){
