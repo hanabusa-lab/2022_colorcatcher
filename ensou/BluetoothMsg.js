@@ -34,6 +34,31 @@ async function onStartButtonClick() {
     
     //受信サービスに追加
     gRXCharaList.push(rcharacteristic);
+
+    //接続した時点でプレイヤーリストに追加する。
+    devname = device["name"];
+    console.log("device=",devname)
+
+    //プレーヤーリストの確認を行う
+    let findFg = false;
+    let player = null;
+    for(p of gPlayerList){
+      if(p.devname==devname){
+        findFg = true;
+        break;
+      }
+    }
+    //プレーヤーがいない場合には、追加する。
+    if(!findFg){
+      player = new Player();
+      player.devname = devname;
+      gPlayerList.push(player);
+    }
+    let index = gPlayerList.indexOf(player);
+    let data = "p:"+index.toString(10)+'\n'
+    console.log("write volume", data);  
+    await rcharacteristic.writeValue(new TextEncoder().encode(data))
+
   } catch (error) {
     console.log("Argh! " + error);
   }
@@ -67,32 +92,25 @@ async function handleNotifications(event) {
 
           //プレーヤーリストの確認を行う
           let findFg = false;
+          let player = null;
           for(p of gPlayerList){
             if(p.devname==devname){
-              p.color = [recieveData[1],recieveData[2],recieveData[3]];
+              //p.color = [recieveData[1],recieveData[2],recieveData[3]];
+              player = p;
+              findFg = true;
               break;
             }
           }
           //プレーヤーがいない場合には、追加する。
-          let player = new Player();
+          if(!findFg){
+            player = new Player();
+            gPlayerList.push(player);
+          }
+
           player.setDevame(devname);
           player.color =[recieveData[1],recieveData[2],recieveData[3]];
           //プレイヤーの楽器を更新する。
-          updateGakkiofPlayer(player);
-          gPlayerList.push(player);
-
-          //PartListにデバイス名称を追加する。
-          let existFg = false;
-          for(i=0; i<gPartList.length; i++){
-            if(gPartList[0]["name"]==devname){
-              existFg = true;
-              console.log("already exist.")
-            }
-          }
-          if(!existFg){
-            //ToDo:パートリストの割り当て
-            gPartList.push({"name":devname, "part":1})
-          }
+          updateGakkiofPlayer(player);         
         }
     }
   }catch (error) {
