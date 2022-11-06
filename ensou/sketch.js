@@ -237,6 +237,15 @@ function keyPressed() {
     for(let player of gPlayerList){
       player.color = [150, 200, 255];
     }
+  //vの場合には、繋がっているplayerにvolumeを送付する。
+  //テストとして、player登録されている全てのmicro:bitに送付する。
+  }else if (key == "v") {
+    console.log("send vol");
+    for(player of gPlayerList){
+      for(elem of player.gakkis){
+        onSendVolume(elem, 255) 
+      }
+    }
   }
 
 }
