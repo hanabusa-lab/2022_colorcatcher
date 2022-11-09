@@ -110,7 +110,7 @@ async function handleNotifications(event) {
           player.setDevame(devname);
           player.color =[recieveData[1],recieveData[2],recieveData[3]];
           //プレイヤーの楽器を更新する。
-          updateGakkiofPlayer(player);         
+          // updateGakkiofPlayer(player);         
         }
     }
   }catch (error) {
@@ -179,6 +179,33 @@ async function onSendNotes(part, nname, duration, velo) {
       var chara = null;
       dname = "";
       console.log("playerlist=",gPlayerList);
+      let i = 0;
+      for(const player of gPlayerList){
+          console.log("elem=",player.devname);
+          dname = player.devname;
+          
+            //該当デバイスに対してvolを送付する。
+            for (const element of gRXCharaList) {
+              //該当のデバイスのみ送付する。
+              if(element["service"]["device"]["name"]!=dname){
+                continue;
+              }
+              let data = "v:"+vol[i].toString(10)+'\n'
+              console.log("write volume", data);  
+              await element.writeValue(new TextEncoder().encode(data))
+              let id = "i:"+i.toString(10)+'\n'
+              console.log("index:", id);  
+              await element.writeValue(new TextEncoder().encode(id))
+            }
+          i = i + 1;
+        }
+       
+      /*
+      //gakkiを利用しているplayserを特定して対応するデバイス名称を取得する。
+      //複数のデバイスに対応すること。
+      var chara = null;
+      dname = "";
+      console.log("playerlist=",gPlayerList);
       for(const player of gPlayerList){
         for(const elem of player.gakkis){
           console.log("input gakki=",gakki, " elem=",player.devname," gakki=", elem);
@@ -203,7 +230,9 @@ async function onSendNotes(part, nname, duration, velo) {
           }
         }
       } 
+      */
     } catch (error) {
       console.log("Argh! " + error);
     }
   }
+
