@@ -15,6 +15,8 @@ class Gakki {
         this.img = [];
         this.imgOnpu = [];
         this.imgDirectory = [];
+        this.ampAnalyer = null;
+        this.count = 0;
     }
     
     //種別を追加する
@@ -45,6 +47,8 @@ class Gakki {
     //曲をロードする。
     loadSound(){
         this.sound = loadSound(this.sound_name);
+        this.ampAnalyer = new p5.Amplitude();
+        this.ampAnalyer.setInput(this.sound);
     }
 
     setEnable(fg){
@@ -81,6 +85,10 @@ class Gakki {
             let myimg = loadImage((imgDir));
             this.img.push(myimg);
         }
+    }
+
+    setCount(cnt){
+        this.count = cnt;
     }
 
 /*
