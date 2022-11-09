@@ -1,7 +1,7 @@
 class Player {
     constructor() {
         this.devname = ""; //bluetoothデバイス名称
-        this.color = [200,0,0]; //r,g,b
+        this.color = [0,0,0]; //r,g,b
         this.gakkis = []; //演奏対象の楽器リスト 楽器の種類を管理する。
         this.pos = [200, 200];
         this.dispSize = [150, 150]; // 表示範囲
@@ -32,8 +32,8 @@ class Player {
     }
 
     //楽器を行進する
-    updateGakki(gakki){
-        this.gakkis = [gakki]
+    updateGakki(gakkis){
+        this.gakkis = gakkis
     }
 
     //楽器を削除する
