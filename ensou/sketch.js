@@ -5,6 +5,7 @@ let gGakkiList = []//楽器のリスト
 
 let gUiImgList = [];// UIイメージオブジェクトを格納するリスト
 let gIconImgList = [];// UIイメージオブジェクトを格納するリスト
+let gOtherImgList = [];
 
 let imgTest;
 let song;
@@ -27,18 +28,26 @@ const BELL_SET = [
 
 //聖者の行進
 const SEIJA_SET = [
-  {"imgDirectory":["assets/Gakki/music_piano_gray.png", "assets/Gakki/music_piano.png"], "sound":"assets/seija_1.mp3", "gakki":Gakki_Kind.Piano0, "color":[[200,1,2]], "pos": [20, 20], "colorMatched": false},
-  {"imgDirectory":["assets/Gakki/music_tubular_bells_chimes_gray.png", "assets/Gakki/music_tubular_bells_chimes.png"],"sound":"assets/seija_2.mp3", "gakki":Gakki_Kind.Metallophone0, "color":[[1,200,2]], "pos": [320, 20], "colorMatched": false},
-  {"imgDirectory":["assets/Gakki/music_alto_saxophone_gray.png", "assets/Gakki/music_alto_saxophone.png"],"sound":"assets/seija_3.mp3", "gakki":Gakki_Kind.Xylophone0, "color":[[1,2,200]], "pos": [620, 20], "colorMatched": false},
-  {"imgDirectory":["assets/Gakki/windchime_gray.png", "assets/Gakki/windchime.png"],"sound":"assets/seija_4.mp3", "gakki":Gakki_Kind.Triangle0, "color":[[200,200,1]], "pos": [920, 20], "colorMatched": false},
-  {"imgDirectory":["assets/Gakki/music_base_gray.png", "assets/Gakki/music_base.png"], "sound":"assets/seija_1.mp3", "gakki":Gakki_Kind.Tambourine0, "color":[[200,1,2]], "pos": [20, 250], "colorMatched": false},
-  {"imgDirectory":["assets/Gakki/drumset_gray.png", "assets/Gakki/drumset.png"],"sound":"assets/seija_2.mp3", "gakki":Gakki_Kind.Drum0, "color":[[1,200,2]], "pos": [320, 250], "colorMatched": false},
-  {"imgDirectory":["assets/Gakki/music_guitar_lespaul_gray.png", "assets/Gakki/music_guitar_lespaul.png"],"sound":"assets/seija_3.mp3", "gakki":Gakki_Kind.Trumpet0, "color":[[1,2,200]], "pos": [620, 250], "colorMatched": false},
-  {"imgDirectory":["assets/Gakki/music_violin_gray.png", "assets/Gakki/music_violin.png"],"sound":"assets/seija_4.mp3", "gakki":Gakki_Kind.Trombone0, "color":[[200,200,1]], "pos": [920, 250], "colorMatched": false}
+  {"imgDirectory":["assets/Gakki/music_piano_gray.png", "assets/Gakki/music_piano.png"], "sound":"assets/seija_1.mp3", "gakki":Gakki_Kind.Piano0, "color":[[255,50,50]], "pos": [20, 20], "colorMatched": false},
+  {"imgDirectory":["assets/Gakki/music_tubular_bells_chimes_gray.png", "assets/Gakki/music_tubular_bells_chimes.png"],"sound":"assets/seija_2.mp3", "gakki":Gakki_Kind.Metallophone0, "color":[[50,255,50]], "pos": [320, 20], "colorMatched": false},
+  {"imgDirectory":["assets/Gakki/music_alto_saxophone_gray.png", "assets/Gakki/music_alto_saxophone.png"],"sound":"assets/seija_3.mp3", "gakki":Gakki_Kind.Xylophone0, "color":[[50,50,255]], "pos": [620, 20], "colorMatched": false},
+  {"imgDirectory":["assets/Gakki/windchime_gray.png", "assets/Gakki/windchime.png"],"sound":"assets/seija_4.mp3", "gakki":Gakki_Kind.Triangle0, "color":[[200,200,50]], "pos": [920, 20], "colorMatched": false},
+  {"imgDirectory":["assets/Gakki/music_base_gray.png", "assets/Gakki/music_base.png"], "sound":"assets/seija_1.mp3", "gakki":Gakki_Kind.Tambourine0, "color":[[50,255,255]], "pos": [20, 250], "colorMatched": false},
+  {"imgDirectory":["assets/Gakki/drumset_gray.png", "assets/Gakki/drumset.png"],"sound":"assets/seija_2.mp3", "gakki":Gakki_Kind.Drum0, "color":[[255,50,255]], "pos": [320, 250], "colorMatched": false},
+  {"imgDirectory":["assets/Gakki/music_guitar_lespaul_gray.png", "assets/Gakki/music_guitar_lespaul.png"],"sound":"assets/seija_3.mp3", "gakki":Gakki_Kind.Trumpet0, "color":[[255,130,50]], "pos": [620, 250], "colorMatched": false},
+  {"imgDirectory":["assets/Gakki/music_violin_gray.png", "assets/Gakki/music_violin.png"],"sound":"assets/seija_4.mp3", "gakki":Gakki_Kind.Trombone0, "color":[[50,255,130]], "pos": [920, 250], "colorMatched": false}
 ]
 
 const UI_IMG_SET = ['assets/UI/red.png', 'assets/UI/green.png', 'assets/UI/blue.png', 'assets/UI/empty.png', 'assets/UI/dodai.png']
 const ICON_IMG_SET = ['assets/UI/player0.png', 'assets/UI/player1.png', 'assets/UI/player2.png', 'assets/UI/player3.png']
+const OTHER_IMG_SET = ['assets/backimg.png']
+
+const SEIJA_PlAYER_SET = [
+  {"gakkis": [Gakki_Kind.Piano0, Gakki_Kind.Tambourine0, Gakki_Kind.Metallophone0, Gakki_Kind.Xylophone0, Gakki_Kind.Triangle0]},
+  {"gakkis": [Gakki_Kind.Metallophone0, Gakki_Kind.Drum0]},
+  {"gakkis": [Gakki_Kind.Xylophone0, Gakki_Kind.Trumpet0]},
+  {"gakkis": [Gakki_Kind.Triangle0, Gakki_Kind.Trombone0]}
+]
 
 //曲のセットを行進する
 function updateSoundSet(sound_set){
@@ -59,28 +68,40 @@ function updateSoundSet(sound_set){
   }
 }
 
+function updatePlayerSet(player_set){
+  let i = 0;
+  let playerSet = [];
+  for (p of gPlayerList) {
+    playerSet = player_set[i];
+    p.updateGakki(playerSet["gakkis"])
+    p.setPos([20 + i*300, 500]);
+    i = i + 1;
+  }
+
+}
+
 //アセットの読み込み、各種情報の初期化
 function preload() {
   
   // Ensure the .ttf or .otf font stored in the assets directory
   // is loaded before setup() and draw() are called
+  
   song = loadSound('assets/seija_1.mp3');
   //最初は聖者の行進を読んでおく
   updateSoundSet(SEIJA_SET);
 
-  //楽曲を読み込む
-  for(let elem of gGakkiList){
-    elem.loadSound();
-  }
-
   
+
+  /*
   for (let i = 0; i < 4; i++) {
     let player = new Player();
     player.setDevame("player" + i);
-    player.setPos([20 + i*300, 500])
-    updateGakkiofPlayer(player);
+    // player.setPos([20 + i*300, 500])
+    // updateGakkiofPlayer(player);
     gPlayerList.push(player);
   }
+  */
+  
 
   for(let imgUiDir of UI_IMG_SET){
     let imgUi = loadImage(imgUiDir);
@@ -90,6 +111,11 @@ function preload() {
   for(let icon of ICON_IMG_SET){
     let imgIcon = loadImage(icon);
     gIconImgList.push(imgIcon);
+  }
+
+  for(let other of OTHER_IMG_SET){
+    let imgOther = loadImage(other);
+    gOtherImgList.push(imgOther);
   }
   
   
@@ -101,6 +127,10 @@ function preload() {
 //画面関連の初期化
 function setup() {
   createCanvas(gCanvasSize[0], gCanvasSize[1]);
+  //楽曲を読み込む
+  for(let elem of gGakkiList){
+    elem.loadSound();
+  }
 
 }
 
@@ -121,18 +151,29 @@ function draw() {
     gPlayerList.push(player);
   }*/
 
-  background(240, 240, 200);
+  updatePlayerSet(SEIJA_PlAYER_SET);
+
+  // background(240, 240, 200);
+  image(gOtherImgList[0], 0, 0, gOtherImgList[0].width *2, gOtherImgList[0].height * 2);
   fill(255);
   textSize(20);
 
   //現在のプレーヤーの状態で音を変える。
-  cntrlSoundByPlayer();4
+  cntrlSoundByPlayer();
 
   dispGakkiStatus();
 
   dispCurrentPlayerColor();
 
   dispParamDebug();
+
+  let volGain = 0;
+  if(second()%2 == 0){
+    volGain = 255;
+  }
+  let volumes = calcAmpOfPlayers();
+  onSendVolume("", volumes);
+
 }
 
 function keyPressed() {
@@ -184,7 +225,7 @@ function keyPressed() {
     var findFg=false;
     for(let i in gPlayerList){
       if(gPlayerList[i].devname=="player"+key){
-        findFg = true;
+        // findFg = true;
         //リストから削除
         // gPlayerList.splice(i, 1);
         // console.log("remove "+key+" gakki user");
@@ -198,20 +239,20 @@ function keyPressed() {
       player.setDevame("player"+key);
       if(key == "1"){
         player.setColor([200,1,2]);
-        player.setPos([20, 220])
+        // player.setPos([20, 220])
       }else if(key == "2"){
         player.setColor([1,200,2]);
-        player.setPos([120, 220])
+        // player.setPos([120, 220])
       }else if(key == "3"){
         player.setColor([1,2,200]);
-        player.setPos([220, 220])
+        // player.setPos([220, 220])
       }else if(key == "4"){
         player.setColor([200,200,1]);
-        player.setPos([320, 220])
+        // player.setPos([320, 220])
       }
       //プレイヤーの楽器を行進する。
-      updateGakkiofPlayer(player);
-      // gPlayerList.push(player);
+      // updateGakkiofPlayer(player);
+      gPlayerList.push(player);
     }
   } else if(key == "z") {
     for(let player of gPlayerList){
@@ -283,7 +324,7 @@ function updateGakkiofPlayer(player){
   if(hued > 100){
     return;
   }
-  player.updateGakki(gakki.kind);
+  // player.updateGakki(gakki.kind);
 }
 
  //楽器のリストの中で、一番ちかい色の楽器を選ぶ。
@@ -398,14 +439,32 @@ function dispGakkiStatus(){
         fill([150, 150, 150]);
         rect(gakki.pos[0], gakki.pos[1], gakki.dispSize[0], gakki.dispSize[1]);  
         
-
+        let isMatched = false;
+        let dispColor = [];
         for(let player of gPlayerList){
           if(checkColorMatched(player.color, gakkiColor)){
-            if(second()%2 == 0){
-              fill(gakkiColor);
-              rect(gakki.pos[0], gakki.pos[1], gakki.dispSize[0], gakki.dispSize[1]);
-            }
+            isMatched = true;
           }
+        }
+        if(isMatched == true){
+          let f = 30;
+          let g = 2;
+          
+          for(let i = 0; i < 3; i++){
+            if(gakki.count >= 0){
+              dispColor.push( 150 + (gakkiColor[i] - 150) * gakki.count / f);
+            }else{
+              dispColor.push( gakkiColor[i] - (gakkiColor[i] - 150) * (f + gakki.count * g) / f);
+            }
+            
+          }
+          fill(dispColor);
+          rect(gakki.pos[0], gakki.pos[1], gakki.dispSize[0], gakki.dispSize[1]);
+          gakki.setCount(gakki.count + 1);
+          if(gakki.count > f){
+            gakki.setCount(-f/g);
+          }
+
         }
         image(gakki.img[0], gakki.pos[0], gakki.pos[1], (gakki.dispSize[0] / 900) * gakki.img[0].width, (gakki.dispSize[1] / 900) * gakki.img[0].height)
         fill(gakkiColor);
@@ -487,7 +546,7 @@ function dispCurrentPlayerColor(){
 function checkColorMatched(colorPlayer, colorGakki){
   
   var score = 0;
-  var machedThreshold = 99;
+  var machedThreshold = 50;
 
   score = 100 - (Math.abs(colorGakki[0] - colorPlayer[0]) + Math.abs(colorGakki[1] - colorPlayer[1]) + Math.abs(colorGakki[2] - colorPlayer[2])) * 100 / 765;
   if(score > machedThreshold){
@@ -495,6 +554,31 @@ function checkColorMatched(colorPlayer, colorGakki){
   }else{
     return false;
   }
+
+}
+
+function calcAmpOfPlayers(){
+  let amp = 0;
+  let ampPlayers = [];
+  for (let player of gPlayerList){
+    amp = 0;
+      
+    for(let gakki of gGakkiList){
+      if(player.gakkis.indexOf(gakki.kind) != -1){
+        let gain = 3;
+        amp = amp + gakki.ampAnalyer.getLevel() * 255 * gain;
+        amp = Math.min(amp, 254);
+        amp = Math.max(amp, 50);
+        amp = Math.trunc(amp);
+      }
+    }
+    if(amp == 0){
+      amp = 200;
+    }
+    ampPlayers.push(amp);
+  }
+  console.log("ampPlayers: " + ampPlayers);
+  return ampPlayers;
 
 }
 
