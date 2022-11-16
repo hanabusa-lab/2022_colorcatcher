@@ -24,51 +24,51 @@ let isClicked = false;
 
 //楽器種別
 const Gakki_Kind = {
-  None: 0, Piano :1, Metallophone0: 2, Saxophone: 3, Triangle0: 4,
-  Tambourine0: 5, Drum0: 6, Trumpet0: 7, Trombone0: 8, Violin0: 9, Drumset: 10, Hihat: 11, 
+  None: 0, Piano: 1, Metallophone0: 2, Saxophone: 3, Triangle0: 4,
+  Tambourine0: 5, Drum0: 6, Trumpet0: 7, Trombone0: 8, Violin0: 9, Drumset: 10, Hihat: 11,
   Keyboard: 12, Cello: 13, Base: 14, Clarinet: 15, Cymbal: 16, Guitar: 17, Harp: 18, Horn: 19,
   Mokkin: 20, Tekkin: 21, Tuba: 22, Flote: 23, Timpani: 24, Synthesizer: 25, Tubularbell: 26, Windchime: 27
 };
 
 const GAKKI_SET = [
-  { "imgDirectory": ["assets/Gakki/drum_gray.png", "assets/Gakki/drum.png"], "gakki": Gakki_Kind.Drum0},
-  { "imgDirectory": ["assets/Gakki/drumset_gray.png", "assets/Gakki/drumset.png"], "gakki": Gakki_Kind.Drumset},
-  { "imgDirectory": ["assets/Gakki/hihat_gray.png", "assets/Gakki/hihat.png"],  "gakki": Gakki_Kind.Hihat},
-  { "imgDirectory": ["assets/Gakki/keyboard6_purple_gray.png", "assets/Gakki/keyboard6_purple.png"],  "gakki": Gakki_Kind.Synthesizer},
-  { "imgDirectory": ["assets/Gakki/music_alto_saxophone_gray.png", "assets/Gakki/music_alto_saxophone.png"],  "gakki": Gakki_Kind.Saxophone},
-  { "imgDirectory": ["assets/Gakki/music_base_gray.png", "assets/Gakki/music_base.png"],   "gakki": Gakki_Kind.Base},
-  { "imgDirectory": ["assets/Gakki/music_cello_gray.png", "assets/Gakki/music_cello.png"],  "gakki": Gakki_Kind.Cello},
-  { "imgDirectory": ["assets/Gakki/music_clarinet_gray.png", "assets/Gakki/music_clarinet.png"],  "gakki": Gakki_Kind.Clarinet},
-  { "imgDirectory": ["assets/Gakki/music_cymbal_gray.png", "assets/Gakki/music_cymbal.png"],  "gakki": Gakki_Kind.Cymbal},
-  { "imgDirectory": ["assets/Gakki/music_flute_gray.png", "assets/Gakki/music_flute.png"],  "gakki": Gakki_Kind.Flote},
-  { "imgDirectory": ["assets/Gakki/music_guitar_lespaul_gray.png", "assets/Gakki/music_guitar_lespaul.png"],  "gakki": Gakki_Kind.Guitar},
-  { "imgDirectory": ["assets/Gakki/music_harp_gray.png", "assets/Gakki/music_harp.png"],  "gakki": Gakki_Kind.Harp},
-  { "imgDirectory": ["assets/Gakki/music_horn_gray.png", "assets/Gakki/music_horn.png"],  "gakki": Gakki_Kind.Horn},
-  { "imgDirectory": ["assets/Gakki/music_mokkingray.png", "assets/Gakki/music_mokkin.png"],  "gakki": Gakki_Kind.Mokkin},
-  { "imgDirectory": ["assets/Gakki/music_piano_gray.png", "assets/Gakki/music_piano.png"],  "gakki": Gakki_Kind.Piano},
-  { "imgDirectory": ["assets/Gakki/music_tambourine_gray.png", "assets/Gakki/music_tambourine.png"],  "gakki": Gakki_Kind.Tambourine0},
-  { "imgDirectory": ["assets/Gakki/music_tekkin_gray.png", "assets/Gakki/music_tekkin.png"],  "gakki": Gakki_Kind.Tekkin},
-  { "imgDirectory": ["assets/Gakki/music_triangle_gray.png", "assets/Gakki/music_triangle.png"],  "gakki": Gakki_Kind.Triangle0},
-  { "imgDirectory": ["assets/Gakki/music_trombone_gray.png", "assets/Gakki/music_trombone.png"],  "gakki": Gakki_Kind.Trombone0},
-  { "imgDirectory": ["assets/Gakki/music_trumpet_gray.png", "assets/Gakki/music_trumpet.png"],  "gakki": Gakki_Kind.Trumpet0},
-  { "imgDirectory": ["assets/Gakki/music_tuba_gray.png", "assets/Gakki/music_tuba.png"],  "gakki": Gakki_Kind.Tuba},
-  { "imgDirectory": ["assets/Gakki/music_tubular_bells_chimes_gray.png", "assets/Gakki/music_tubular_bells_chimes.png"],  "gakki": Gakki_Kind.Tubularbell},
-  { "imgDirectory": ["assets/Gakki/music_violin_gray.png", "assets/Gakki/music_violin.png"],  "gakki": Gakki_Kind.Violin0},
-  { "imgDirectory": ["assets/Gakki/windchime_gray.png", "assets/Gakki/windchime.png"],  "gakki": Gakki_Kind.Windchime},
-  { "imgDirectory": ["assets/Gakki/music_tynpani_gray.png", "assets/Gakki/music_tynpani.png"],  "gakki": Gakki_Kind.Timpani}
+  { "imgDirectory": ["assets/Gakki/drum_gray.png", "assets/Gakki/drum.png"], "gakki": Gakki_Kind.Drum0 },
+  { "imgDirectory": ["assets/Gakki/drumset_gray.png", "assets/Gakki/drumset.png"], "gakki": Gakki_Kind.Drumset },
+  { "imgDirectory": ["assets/Gakki/hihat_gray.png", "assets/Gakki/hihat.png"], "gakki": Gakki_Kind.Hihat },
+  { "imgDirectory": ["assets/Gakki/keyboard6_purple_gray.png", "assets/Gakki/keyboard6_purple.png"], "gakki": Gakki_Kind.Synthesizer },
+  { "imgDirectory": ["assets/Gakki/music_alto_saxophone_gray.png", "assets/Gakki/music_alto_saxophone.png"], "gakki": Gakki_Kind.Saxophone },
+  { "imgDirectory": ["assets/Gakki/music_base_gray.png", "assets/Gakki/music_base.png"], "gakki": Gakki_Kind.Base },
+  { "imgDirectory": ["assets/Gakki/music_cello_gray.png", "assets/Gakki/music_cello.png"], "gakki": Gakki_Kind.Cello },
+  { "imgDirectory": ["assets/Gakki/music_clarinet_gray.png", "assets/Gakki/music_clarinet.png"], "gakki": Gakki_Kind.Clarinet },
+  { "imgDirectory": ["assets/Gakki/music_cymbal_gray.png", "assets/Gakki/music_cymbal.png"], "gakki": Gakki_Kind.Cymbal },
+  { "imgDirectory": ["assets/Gakki/music_flute_gray.png", "assets/Gakki/music_flute.png"], "gakki": Gakki_Kind.Flote },
+  { "imgDirectory": ["assets/Gakki/music_guitar_lespaul_gray.png", "assets/Gakki/music_guitar_lespaul.png"], "gakki": Gakki_Kind.Guitar },
+  { "imgDirectory": ["assets/Gakki/music_harp_gray.png", "assets/Gakki/music_harp.png"], "gakki": Gakki_Kind.Harp },
+  { "imgDirectory": ["assets/Gakki/music_horn_gray.png", "assets/Gakki/music_horn.png"], "gakki": Gakki_Kind.Horn },
+  { "imgDirectory": ["assets/Gakki/music_mokkin_gray.png", "assets/Gakki/music_mokkin.png"], "gakki": Gakki_Kind.Mokkin },
+  { "imgDirectory": ["assets/Gakki/music_piano_gray.png", "assets/Gakki/music_piano.png"], "gakki": Gakki_Kind.Piano },
+  { "imgDirectory": ["assets/Gakki/music_tambourine_gray.png", "assets/Gakki/music_tambourine.png"], "gakki": Gakki_Kind.Tambourine0 },
+  { "imgDirectory": ["assets/Gakki/music_tekkin_gray.png", "assets/Gakki/music_tekkin.png"], "gakki": Gakki_Kind.Tekkin },
+  { "imgDirectory": ["assets/Gakki/music_triangle_gray.png", "assets/Gakki/music_triangle.png"], "gakki": Gakki_Kind.Triangle0 },
+  { "imgDirectory": ["assets/Gakki/music_trombone_gray.png", "assets/Gakki/music_trombone.png"], "gakki": Gakki_Kind.Trombone0 },
+  { "imgDirectory": ["assets/Gakki/music_trumpet_gray.png", "assets/Gakki/music_trumpet.png"], "gakki": Gakki_Kind.Trumpet0 },
+  { "imgDirectory": ["assets/Gakki/music_tuba_gray.png", "assets/Gakki/music_tuba.png"], "gakki": Gakki_Kind.Tuba },
+  { "imgDirectory": ["assets/Gakki/music_tubular_bells_chimes_gray.png", "assets/Gakki/music_tubular_bells_chimes.png"], "gakki": Gakki_Kind.Tubularbell },
+  { "imgDirectory": ["assets/Gakki/music_violin_gray.png", "assets/Gakki/music_violin.png"], "gakki": Gakki_Kind.Violin0 },
+  { "imgDirectory": ["assets/Gakki/windchime_gray.png", "assets/Gakki/windchime.png"], "gakki": Gakki_Kind.Windchime },
+  { "imgDirectory": ["assets/Gakki/music_tynpani_gray.png", "assets/Gakki/music_tynpani.png"], "gakki": Gakki_Kind.Timpani }
 ]
 
 
 //曲ごとの定義
 //ジングルベル
 const BELL_SET = [
-  { "sound": "assets/ジングルベル/アンティークシンバル1.mp3", "gakki": Gakki_Kind.Cymbal, "color": [[240, 72, 70]], "pos": [40, 173], "colorMatched": false },
-  { "sound": "assets/ジングルベル/アンティークシンバル2.mp3", "gakki": Gakki_Kind.Cymbal, "color": [[99, 255, 127]], "pos": [17, 495], "colorMatched": false },
-  { "sound": "assets/ジングルベル/グロッケン1.mp3", "gakki": Gakki_Kind.Tekkin, "color": [[122, 114, 255]], "pos": [252, 409], "colorMatched": false },
-  { "sound": "assets/ジングルベル/グロッケン2.mp3", "gakki": Gakki_Kind.Tekkin, "color": [[30, 188, 90]], "pos": [317, 69], "colorMatched": false },
+  { "sound": "assets/ジングルベル/アンティークシンバル1.mp3", "gakki": Gakki_Kind.Mokkin, "color": [[240, 72, 70]], "pos": [40, 173], "colorMatched": false },
+  { "sound": "assets/ジングルベル/アンティークシンバル2.mp3", "gakki": Gakki_Kind.Mokkin, "color": [[150, 255, 200]], "pos": [17, 495], "colorMatched": false },
+  { "sound": "assets/ジングルベル/グロッケン1.mp3", "gakki": Gakki_Kind.Tekkin, "color": [[150, 170, 255]], "pos": [252, 409], "colorMatched": false },
+  { "sound": "assets/ジングルベル/グロッケン2.mp3", "gakki": Gakki_Kind.Tekkin, "color": [[30, 110, 80]], "pos": [317, 69], "colorMatched": false },
   { "sound": "assets/ジングルベル/ホルン1.mp3", "gakki": Gakki_Kind.Horn, "color": [[255, 175, 137]], "pos": [554, 9], "colorMatched": false },
   { "sound": "assets/ジングルベル/ホルン2.mp3", "gakki": Gakki_Kind.Horn, "color": [[178, 142, 255]], "pos": [535, 333], "colorMatched": false },
-  { "sound": "assets/ジングルベル/ハープ.mp3", "gakki": Gakki_Kind.Harp, "color": [[70, 76, 240]], "pos": [825, 9], "colorMatched": false },
+  { "sound": "assets/ジングルベル/ハープ.mp3", "gakki": Gakki_Kind.Harp, "color": [[30, 60, 150]], "pos": [825, 9], "colorMatched": false },
   { "sound": "assets/ジングルベル/ピアノ1.mp3", "gakki": Gakki_Kind.Piano, "color": [[255, 174, 202]], "pos": [1062, 68], "colorMatched": false },
   { "sound": "assets/ジングルベル/ピアノ2.mp3", "gakki": Gakki_Kind.Piano, "color": [[189, 255, 154]], "pos": [845, 333], "colorMatched": false },
   { "sound": "assets/ジングルベル/ドラム1.mp3", "gakki": Gakki_Kind.Hihat, "color": [[249, 255, 70]], "pos": [1340, 172], "colorMatched": false },
@@ -125,10 +125,10 @@ const HOSHI_SET = [
 
 const UI_IMG_SET = ['assets/UI/red.png', 'assets/UI/green.png', 'assets/UI/blue.png', 'assets/UI/empty.png', 'assets/UI/dodai.png']
 const ICON_IMG_SET = ['assets/UI/player0.png', 'assets/UI/player1.png', 'assets/UI/player2.png', 'assets/UI/player3.png']
-const OTHER_IMG_SET = ['assets/backimg.png', 'assets/backimg_fuwafuwa.png', 'assets/backimg_kirakira.png', 'assets/backimg_onpu.png', 'assets/backimg_merry.png' ]
+const OTHER_IMG_SET = ['assets/backimg.png', 'assets/backimg_fuwafuwa.png', 'assets/backimg_kirakira.png', 'assets/backimg_onpu.png', 'assets/backimg_merry.png']
 
 const BELL_PlAYER_SET = [
-  { "gakkis": [Gakki_Kind.Cymbal, Gakki_Kind.Cymbal, Gakki_Kind.Tekkin] },
+  { "gakkis": [Gakki_Kind.Mokkin, Gakki_Kind.Mokkin, Gakki_Kind.Tekkin] },
   { "gakkis": [Gakki_Kind.Tekkin, Gakki_Kind.Horn, Gakki_Kind.Horn] },
   { "gakkis": [Gakki_Kind.Harp, Gakki_Kind.Piano, Gakki_Kind.Piano] },
   { "gakkis": [Gakki_Kind.Hihat, Gakki_Kind.Drum0, Gakki_Kind.Drum0] }
@@ -165,8 +165,8 @@ function updateSoundSet(sound_set) {
     gakki.setSoundName(elem["sound"]);
     gakki.setPos(elem["pos"]);
     gakki.setColorMatched(elem["colorMatched"])
-    for(gakki_set of GAKKI_SET){
-      if(elem["gakki"] == gakki_set["gakki"]){
+    for (gakki_set of GAKKI_SET) {
+      if (elem["gakki"] == gakki_set["gakki"]) {
         gakki.setImgDir(gakki_set["imgDirectory"])
         break;
       }
@@ -196,16 +196,16 @@ function preload() {
   // Ensure the .ttf or .otf font stored in the assets directory
   // is loaded before setup() and draw() are called
 
-  if(KYOKU == 'BELL'){
+  if (KYOKU == 'BELL') {
     updateSoundSet(BELL_SET);
     updatePlayerSet(BELL_PlAYER_SET);
-  }else if(KYOKU == 'SEIJA'){
+  } else if (KYOKU == 'SEIJA') {
     updateSoundSet(SEIJA_SET);
     updatePlayerSet(SEIJA_PlAYER_SET);
-  }else if(KYOKU == 'HOSHI'){
+  } else if (KYOKU == 'HOSHI') {
     updateSoundSet(HOSHI_SET);
     updatePlayerSet(HOSHI_PlAYER_SET);
-  }else {
+  } else {
     updateSoundSet(CHAIRO_SET);
     updatePlayerSet(CHAIRO_PlAYER_SET);
   }
@@ -213,9 +213,9 @@ function preload() {
   //最初は聖者の行進を読んでおく
   // updateSoundSet(CHAIRO_SET);
   // 
-  
+
   // updateSoundSet(HOSHI_SET);
-  
+
 
 
 
@@ -248,7 +248,7 @@ function preload() {
 
 
 
-  frameRate(30);
+  frameRate(10);
 }
 
 //画面関連の初期化
@@ -259,7 +259,7 @@ function setup() {
     elem.loadSound();
   }
 
-  
+
 
 }
 
@@ -279,19 +279,19 @@ function draw() {
     // player.gakkis = [Piano]
     gPlayerList.push(player);
   }*/
-  if(KYOKU == 'BELL'){
+  if (KYOKU == 'BELL') {
     updatePlayerSet(BELL_PlAYER_SET);
-  }else if(KYOKU == 'SEIJA'){
+  } else if (KYOKU == 'SEIJA') {
     updatePlayerSet(SEIJA_PlAYER_SET);
-  }else if(KYOKU == 'HOSHI'){
+  } else if (KYOKU == 'HOSHI') {
     updatePlayerSet(HOSHI_PlAYER_SET);
-  }else {
+  } else {
     updatePlayerSet(CHAIRO_PlAYER_SET);
   }
-  
+
 
   // background(240, 240, 200);
-  image(gOtherImgList[0], 0, 0, gOtherImgList[0].width, gOtherImgList[0].height);
+  // image(gOtherImgList[0], 0, 0, gOtherImgList[0].width, gOtherImgList[0].height);
   // image(gOtherImgList[1], 0, 0, gOtherImgList[1].width / 6, gOtherImgList[1].height / 6);
 
   let countBackImg = 0;
@@ -301,14 +301,14 @@ function draw() {
     }
   }
 
-  if(countBackImg > 3){
-    image(gOtherImgList[1], 0, 0, gOtherImgList[1].width, gOtherImgList[1].height);
+  if (countBackImg > 3) {
+    //  image(gOtherImgList[1], 0, 0, gOtherImgList[1].width, gOtherImgList[1].height);
   }
-  if(countBackImg > 6){
-    image(gOtherImgList[2], 0, 0, gOtherImgList[2].width, gOtherImgList[2].height);
+  if (countBackImg > 6) {
+    // image(gOtherImgList[2], 0, 0, gOtherImgList[2].width, gOtherImgList[2].height);
   }
-  if(countBackImg > 9){
-    image(gOtherImgList[3], 0, 0, gOtherImgList[3].width, gOtherImgList[3].height);
+  if (countBackImg > 9) {
+    // image(gOtherImgList[3], 0, 0, gOtherImgList[3].width, gOtherImgList[3].height);
   }
 
 
@@ -317,10 +317,10 @@ function draw() {
   textSize(20);
 
   //現在のプレーヤーの状態で音を変える。
-  
-  
+
+
   let volumes = [255, 255, 255, 255];
-  if(gColorCheckActive == true){
+  if (gColorCheckActive == true) {
     cntrlSoundByPlayer();
 
     dispParamDebug();
@@ -329,18 +329,20 @@ function draw() {
     if (second() % 2 == 0) {
       volGain = 255;
     }
-    volumes = calcAmpOfPlayers();
-    onSendVolume("", volumes);
+
 
     dispGakkiStatus(volumes);
 
   }
+  volumes = calcAmpOfPlayers();
+  onSendVolume("", volumes);
   dispCurrentPlayerColor(volumes);
 
-  if(countBackImg > 11){
-    image(gOtherImgList[4], 0, 0, gOtherImgList[4].width, gOtherImgList[4].height);
+
+  if (countBackImg > 11) {
+    // image(gOtherImgList[4], 0, 0, gOtherImgList[4].width, gOtherImgList[4].height);
   }
-  
+
 }
 
 function keyPressed() {
@@ -461,7 +463,7 @@ function mouseClicked() {
 
   console.log("mouseCliced");
   isClicked = true; // ユーザ操作が入らないと音楽が再生許可されない問題の解決のため
-  if(gColorCheckActive == true){
+  if (gColorCheckActive == true) {
     checkPlayerColorMatched();
   }
 }
@@ -507,9 +509,14 @@ function cntrlSoundByPlayer() {
     for (let gakki of gGakkiList) {
       if (gakki.sound.isPlaying()) {
         isGakkiPlaying = 1;
+        break;
       }
     }
-
+    if (isGakkiPlaying == 0) {
+      for (let gakki of gGakkiList) {
+        gakki.sound.play();
+      }
+    }
     for (let gakki of gGakkiList) {
       if (gakki.colorMatched == true) {
         gakki.sound.setVolume(1);
@@ -517,12 +524,8 @@ function cntrlSoundByPlayer() {
         gakki.sound.setVolume(0);
       }
 
-      if (isGakkiPlaying == 0) {
-        gakki.sound.play();
-
-      }
-
     }
+
   }
 }
 
@@ -540,10 +543,10 @@ function dispGakkiStatus() {
         let baias = 0.9;
         let gainAmp = 1.2;
         let amp = Math.min(gakki.ampAnalyer.getLevel() * gainAmp + baias, 1.2);
-        
-        fill([gakkiColor[0] *  amp, gakkiColor[1] *  amp, gakkiColor[2] *  amp, ]);
+
+        fill([gakkiColor[0] * amp, gakkiColor[1] * amp, gakkiColor[2] * amp,]);
         circle(gakki.pos[0] + gakki.dispSize[0] / 2, gakki.pos[1] + gakki.dispSize[0] / 2, gakki.dispSize[0]);
-        image(gakki.img[1], gakki.pos[0] + 10, gakki.pos[1] + 20, (gakki.dispSize[0] / 900) * gakki.img[1].width, (gakki.dispSize[1] / 900) * gakki.img[1].height)
+        // image(gakki.img[1], gakki.pos[0] + 10, gakki.pos[1] + 20, (gakki.dispSize[0] / 900) * gakki.img[1].width, (gakki.dispSize[1] / 900) * gakki.img[1].height)
       } else {
 
         fill([150, 150, 150]);
@@ -633,7 +636,7 @@ function dispCurrentPlayerColor(volumes) {
 
     let baias = 0.9;
     let gainAmp = 1.4;
-    let amp = Math.min(volumes[i]/255 * gainAmp + baias, 1.5);
+    let amp = Math.min(volumes[i] / 255 * gainAmp + baias, 1.5);
     var gain = 1 / 130;
     image(gUiImgList[4], player.pos[0] - 90, player.pos[1] + 120, gUiImgList[4].width * player.dispSize[0] * gain, gUiImgList[4].height * player.dispSize[0] * gain);
     var gain = 1 / 300;
@@ -644,13 +647,13 @@ function dispCurrentPlayerColor(volumes) {
 
     for (let i = 0; i < 3; i++) {
       for (let j = 1; j <= 5; j++) {
-        image(gUiImgList[3], player.pos[0] + i * 50, player.pos[1] + 200 + (50 - j * 20), gUiImgList[i].width / 7, gUiImgList[i].height / 5);
+        // image(gUiImgList[3], player.pos[0] + i * 50, player.pos[1] + 200 + (50 - j * 20), gUiImgList[3].width, gUiImgList[3].height);
       }
     }
     for (let i = 0; i < 3; i++) {
       numDisp = player.color[i] / 50;
       for (let j = 1; j <= numDisp; j++) {
-        image(gUiImgList[i], player.pos[0] + i * 50, player.pos[1] + 200 + (50 - j * 20), gUiImgList[i].width / 7, gUiImgList[i].height / 5);
+        image(gUiImgList[i], player.pos[0] + i * 50, player.pos[1] + 200 + (50 - j * 20), gUiImgList[i].width, gUiImgList[i].height);
       }
     }
     i = i + 1;
@@ -662,7 +665,7 @@ function dispCurrentPlayerColor(volumes) {
 function checkColorMatched(colorPlayer, colorGakki) {
 
   var score = 0;
-  var machedThreshold = 50;
+  var machedThreshold = 87;
 
   score = 100 - (Math.abs(colorGakki[0] - colorPlayer[0]) + Math.abs(colorGakki[1] - colorPlayer[1]) + Math.abs(colorGakki[2] - colorPlayer[2])) * 100 / 765;
   if (score > machedThreshold) {
@@ -693,7 +696,7 @@ function calcAmpOfPlayers() {
     }
     ampPlayers.push(amp);
   }
-  console.log("ampPlayers: " + ampPlayers);
+  // console.log("ampPlayers: " + ampPlayers);
   return ampPlayers;
 
 }
