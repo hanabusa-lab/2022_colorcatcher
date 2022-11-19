@@ -6,6 +6,8 @@ let KYOKU = 'BELL';
 let ONSHITSU = 'NORMAL'; // 通常音質
 // let ONSHITSU = 'LIGHT'; // 処理落ちするとき用の音質
 
+let gCoolCount = 0;
+
 
 let gCanvasSize = [1600, 1200]; //キャンバスサイズ
 
@@ -365,7 +367,7 @@ function draw() {
   if (countBackImg > 6) {
     image(gOtherImgList[2], 0, 0, gOtherImgList[2].width, gOtherImgList[2].height);
   }
-  if (countBackImg > 9) {
+  if (countBackImg > 11) {
     image(gOtherImgList[3], 0, 0, gOtherImgList[3].width, gOtherImgList[3].height);
   }
   if (countBackImg > 11) {
@@ -531,18 +533,26 @@ function updateGakkiofPlayer(player) {
 //現在のプレーヤーの状態で音を変える。
 function cntrlSoundByPlayer() {
   //現在のプレーヤーが担当している音のみを再生する。
-  var isGakkiPlaying = 0;
+  let isGakkiPlaying = 0;
 
   if (isClicked == true) {
     for (let gakki of gGakkiList) {
       if (gakki.sound.isPlaying()) {
         isGakkiPlaying = 1;
+        gCoolCount = 0;
         break;
       }
     }
     if (isGakkiPlaying == 0) {
+      gCoolCount = gCoolCount + 1;
+      console.log("gCoolCount", gCoolCount);
+      if(gCoolCount > 50){
+        console.log("sound start ", millis());
       for (let gakki of gGakkiList) {
         gakki.sound.play();
+        console.log("gakki play ", gakki,  millis());
+      }
+      console.log("sound end", millis());
       }
     }
     for (let gakki of gGakkiList) {
@@ -693,7 +703,10 @@ function dispCurrentPlayerColor(volumes) {
 function checkColorMatched(colorPlayer, colorGakki) {
 
   var score = 0;
-  var machedThreshold = 30;
+  var machedThreshold = 80;
+  if (key == "p") {
+    machedThreshold = 0;
+  }
 
   score = 100 - (Math.abs(colorGakki[0] - colorPlayer[0]) + Math.abs(colorGakki[1] - colorPlayer[1]) + Math.abs(colorGakki[2] - colorPlayer[2])) * 100 / 765;
   if (score > machedThreshold) {
