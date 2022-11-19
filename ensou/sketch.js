@@ -3,8 +3,8 @@ let KYOKU = 'BELL';
 // let KYOKU = 'SEIJA';
 // let KYOKU = 'HOSHI';
 
-let ONSHITSU = 'NORMAL'; // 通常音質
-// let ONSHITSU = 'LIGHT'; // 処理落ちするとき用の音質
+// let ONSHITSU = 'NORMAL'; // 通常音質
+let ONSHITSU = 'LIGHT'; // 処理落ちするとき用の音質
 
 let gCoolCount = 0;
 
@@ -342,7 +342,7 @@ function draw() {
   //現在のプレーヤーの状態で音を変える。
 
 
-  let volumes = [255, 255, 255, 255];
+  let volumes = [100, 100, 100, 100];
   if (gColorCheckActive == true) {
     cntrlSoundByPlayer();
 
@@ -353,11 +353,10 @@ function draw() {
       volGain = 255;
     }
 
-
+    volumes = calcAmpOfPlayers();
     dispGakkiStatus(volumes);
 
   }
-  volumes = calcAmpOfPlayers();
   onSendVolume("", volumes);
   dispCurrentPlayerColor(volumes);
 
@@ -545,14 +544,14 @@ function cntrlSoundByPlayer() {
     }
     if (isGakkiPlaying == 0) {
       gCoolCount = gCoolCount + 1;
-      console.log("gCoolCount", gCoolCount);
+      // console.log("gCoolCount", gCoolCount);
       if(gCoolCount > 50){
-        console.log("sound start ", millis());
+        // console.log("sound start ", millis());
       for (let gakki of gGakkiList) {
         gakki.sound.play();
-        console.log("gakki play ", gakki,  millis());
+        // console.log("gakki play ", gakki,  millis());
       }
-      console.log("sound end", millis());
+      //  console.log("sound end", millis());
       }
     }
     for (let gakki of gGakkiList) {
@@ -725,10 +724,10 @@ function calcAmpOfPlayers() {
 
     for (let gakki of gGakkiList) {
       if (player.gakkis.indexOf(gakki.kind) != -1) {
-        let gain = 1;
+        let gain = 3;
         amp = amp + gakki.ampAnalyer.getLevel() * 255 * gain;
         amp = Math.min(amp, 254);
-        amp = Math.max(amp, 20);
+        amp = Math.max(amp, 0);
         amp = Math.trunc(amp);
       }
     }
