@@ -82,6 +82,9 @@ const BELL_SET = [
 ]
 
 const BELL_LIGHT_SET = [
+  { "sound": "assets/ジングルベル_音質最軽量版/ドラム1.mp3", "gakki": Gakki_Kind.Hihat, "color": [[249, 255, 70]], "pos": [1340, 172], "colorMatched": false },
+  { "sound": "assets/ジングルベル_音質最軽量版/ドラム2.mp3", "gakki": Gakki_Kind.Drum0, "color": [[70, 238, 243]], "pos": [1138, 408], "colorMatched": false },
+  { "sound": "assets/ジングルベル_音質最軽量版/ドラム3.mp3", "gakki": Gakki_Kind.Drum0, "color": [[240, 217, 255]], "pos": [1362, 495], "colorMatched": false },
   { "sound": "assets/ジングルベル_音質最軽量版/アンティークシンバル1.mp3", "gakki": Gakki_Kind.Mokkin, "color": [[240, 72, 70]], "pos": [40, 173], "colorMatched": false },
   { "sound": "assets/ジングルベル_音質最軽量版/アンティークシンバル2.mp3", "gakki": Gakki_Kind.Mokkin, "color": [[150, 255, 200]], "pos": [17, 495], "colorMatched": false },
   { "sound": "assets/ジングルベル_音質最軽量版/グロッケン1.mp3", "gakki": Gakki_Kind.Tekkin, "color": [[150, 170, 255]], "pos": [252, 409], "colorMatched": false },
@@ -90,10 +93,7 @@ const BELL_LIGHT_SET = [
   { "sound": "assets/ジングルベル_音質最軽量版/ホルン2.mp3", "gakki": Gakki_Kind.Horn, "color": [[178, 142, 255]], "pos": [535, 333], "colorMatched": false },
   { "sound": "assets/ジングルベル_音質最軽量版/ハープ.mp3", "gakki": Gakki_Kind.Harp, "color": [[30, 60, 150]], "pos": [825, 9], "colorMatched": false },
   { "sound": "assets/ジングルベル_音質最軽量版/ピアノ1.mp3", "gakki": Gakki_Kind.Piano, "color": [[255, 174, 202]], "pos": [1062, 68], "colorMatched": false },
-  { "sound": "assets/ジングルベル_音質最軽量版/ピアノ2.mp3", "gakki": Gakki_Kind.Piano, "color": [[189, 255, 154]], "pos": [845, 333], "colorMatched": false },
-  { "sound": "assets/ジングルベル_音質最軽量版/ドラム1.mp3", "gakki": Gakki_Kind.Hihat, "color": [[249, 255, 70]], "pos": [1340, 172], "colorMatched": false },
-  { "sound": "assets/ジングルベル_音質最軽量版/ドラム2.mp3", "gakki": Gakki_Kind.Drum0, "color": [[70, 238, 243]], "pos": [1138, 408], "colorMatched": false },
-  { "sound": "assets/ジングルベル_音質最軽量版/ドラム3.mp3", "gakki": Gakki_Kind.Drum0, "color": [[240, 217, 255]], "pos": [1362, 495], "colorMatched": false }
+  { "sound": "assets/ジングルベル_音質最軽量版/ピアノ2.mp3", "gakki": Gakki_Kind.Piano, "color": [[189, 255, 154]], "pos": [845, 333], "colorMatched": false }
 ]
 
 //茶色の小瓶
