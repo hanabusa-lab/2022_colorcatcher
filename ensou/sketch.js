@@ -762,7 +762,7 @@ function dispCurrentPlayerColor(volumes) {
 function checkColorMatched(colorPlayer, colorGakki) {
 
   var score = 0;
-  var machedThreshold = 80;
+  var machedThreshold = 83;
   if (key == "p") {
     machedThreshold = 0;
   }
