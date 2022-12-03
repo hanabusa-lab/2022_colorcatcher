@@ -109,6 +109,16 @@ async function handleNotifications(event) {
 
           player.setDevame(devname);
           player.color = [recieveData[1], recieveData[2], recieveData[3]];
+          if (KYOKU == 'BELL') {
+            updatePlayerSet(BELL_PlAYER_SET);
+          } else if (KYOKU == 'SEIJA') {
+            updatePlayerSet(SEIJA_PlAYER_SET);
+          } else if (KYOKU == 'HOSHI') {
+            updatePlayerSet(HOSHI_PlAYER_SET);
+          } else {
+            updatePlayerSet(CHAIRO_PlAYER_SET);
+          }
+        
           //プレイヤーの楽器を更新する。
           // updateGakkiofPlayer(player);         
         }
